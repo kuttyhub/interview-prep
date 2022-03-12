@@ -1,7 +1,3 @@
-from turtle import right
-from typing import Tuple
-
-
 def isPalindrome(string):
     left = 0
     right = len(string) -1

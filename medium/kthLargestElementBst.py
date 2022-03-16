@@ -1,4 +1,4 @@
-# This is an input class. Do not edit.
+# Kutty's playground.
 class BST:
     def __init__(self, value, left=None, right=None):
         self.value = value
@@ -7,16 +7,15 @@ class BST:
 
 
 def findKthLargestValueInBst(tree, k):
-    ele = postOrder(tree,[])
-    ele.sort()
+    #inorder gives tree in sorted form
+    ele = inOrder(tree,[])
     k%=len(ele)
-
     return ele[-k] if k<len(ele) else -1
 
-def postOrder(root,array):
+def inOrder(root,array):
     if not root:
         return array
-    postOrder(root.left,array)
-    postOrder(root.right,array)
     array.append(root.value)
+    inOrder(root.left,array)
+    inOrder(root.right,array)
     return array

@@ -1,6 +1,5 @@
 from typing import Dict
 
-
 class Product:
     def __init__(self,id,name,quantity,price) -> None:
         self.product_id = id 
@@ -34,14 +33,13 @@ class Order:
 
 class Store:
     def __init__(self) -> None:
-        #dict used to map the product or offers 
-        # to their id like mongo db keys
+        #dict used to lookup a product faster 
         
         self.ordered_porducts  = []
         self.inventory_products:Dict[any,Product] = {}
         
-        # a product can have different offers based on quantity 
-        # or some things like that so its map as dict[string,list]
+        # a single product can have miultiple offers based on quantity 
+        # or some things like that so its quiet resonable to store as dict[string,list]
         self.store_offers={}
 
     

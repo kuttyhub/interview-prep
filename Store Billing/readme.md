@@ -1,4 +1,4 @@
-###store Managing Console Application
+# Store Managing Console Application
 
 ### Run the code
 

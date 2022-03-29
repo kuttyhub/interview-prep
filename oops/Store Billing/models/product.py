@@ -9,11 +9,13 @@ class Product:
     def has_requested_quantity(self,requested_quantity:int) -> bool:
         return requested_quantity <= self.quantity
     
+    def update_quantity(self,value):
+        self.quantity += value
     #updating quantity will be done here
 
 
     def __str__(self) -> str:
         return "{} - {} - {} - {}".format(self.id,self.name,self.quantity,self.price)
 
-    def get_stock(self) -> str:
+    def display_stock(self) -> str:
         return "{} - {}".format(self.name,self.quantity)

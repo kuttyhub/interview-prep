@@ -1,5 +1,6 @@
 from collections import defaultdict
 from typing import Dict, List
+from models.offer_handller import OfferHandler
 
 from models.product_offer import ProductOffer
 from classes.order import Order 
@@ -7,9 +8,10 @@ from classes.order import Order
 
 # "NEW-OFFER=>OFFER-NAME|OFFER-ID|Product-ID,Product-ID..|Minimum-Quantity|Discount-Percentage|offer_type"
 
-class ProductOfferHandler:
+class ProductOfferHandler(OfferHandler):
     
     def __init__(self) -> None:
+        super.__init__()
         self.offers :Dict[int,List[ProductOffer]]= defaultdict(list)
     
     def add_new_offer(self,query):

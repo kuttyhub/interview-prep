@@ -2,12 +2,14 @@ from faulthandler import disable
 from typing import List
 from models.multi_product_offer import MultiProductOffer 
 from classes.order import Order
+from models.offer_handller import OfferHandler
 
 
 # "NEW-OFFER=>OFFER-NAME|OFFER-ID|Product-ID,Product-ID..|Minimum-Quantity|Discount-Percentage|offer_type"
 
-class MultiProductHandler:
+class MultiProductHandler(OfferHandler):
     def __init__(self) -> None:
+        super.__init__()
         self.offers:List[MultiProductOffer] = []
 
     def add_new_offer(self, query):

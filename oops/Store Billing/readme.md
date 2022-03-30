@@ -106,5 +106,5 @@ STOCK=>2
 GoodDay500g - 10
 
 EXIT
-Sign Off...
+Sign off...
 ```

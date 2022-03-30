@@ -5,32 +5,33 @@ from classes.offers.offer_handler import OffersHandler
 
 class Store:
     
-    inventory = Inventory()
-    offers_handler = OffersHandler()
-    orders = []
+    def __init__(self) -> None:
+        self.__inventory = Inventory()
+        self.__offers_handler = OffersHandler()
+        self.__orders = []
     
     def __add_product_to_inventory(self,query):
-        Store.inventory.add_product(query)
+        self.__inventory.add_product(query)
 
     
     def __add_offer(self,query):
-        Store.offers_handler.add_new_offer(query);
+        self.__offers_handler.add_new_offer(query);
     
     def __display_product_stock(self,properties):
         prod_id = int(properties)
-        Store.inventory.display_product_stock(prod_id)
+        self.__inventory.display_product_stock(prod_id)
     
     def __make_order(self,query):
 
         cart_entries:List[CartItem] = self.__get_entrys_from_query(query);        
         order = Order(cart_entries);
 
-        Store.inventory.reduce_quantity(cart_entries)
-        
-        Store.offers_handler.apply_all_offers(order)
+        self.__inventory.reduce_quantity(cart_entries)
+            
+        self.__offers_handler.apply_all_offers(order)
         
         order.show_bill()
-        Store.orders.append(order);
+        self.__orders.append(order);
 
     
     def __get_entrys_from_query(self,query)-> List[CartItem]:
@@ -41,7 +42,7 @@ class Store:
 
         for cart_item in query_props:
             prod_id,quantity = map(int,cart_item.split("|"))
-            requested_product = Store.inventory.get_product(prod_id)
+            requested_product = self.__inventory.get_product(prod_id)
 
             # check quantity 
             if requested_product.quantity <quantity:
@@ -55,7 +56,7 @@ class Store:
     def __show_commands(self):
         user_manual ='''\
         Commands :
-            1. INVENTORY - to add product to store
+            1. INVENTORY - to add product to Store
                     - "INVENTORY=>ProductId|ProductName|Quantity|Price-Per-Quantity"
             
             2. STOCK - to check a product quantity in store
@@ -67,7 +68,10 @@ class Store:
             4. NEW-OFFER - to add offer to a specific product
                     - "NEW-OFFER=>OFFER-NAME|OFFER-ID|Product-ID,Product-ID..|Minimum-Quantity|Discount-Percentage|offer_type"
 
-            5. EXIT - to exit from the application 
+            5. HELP - to show comands
+
+            6. EXIT - to exit from the application 
+
         '''
         print(user_manual)
 
